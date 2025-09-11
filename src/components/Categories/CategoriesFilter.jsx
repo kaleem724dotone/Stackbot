@@ -12,14 +12,17 @@ const CategoriesFilter = () => {
   ];
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md border border-gray-200 w-64 my-2">
+    <div className="p-6 bg-white rounded-lg shadow-md border border-gray-200 w-full md:w-64 my-2">
       <div className="flex items-center mb-4">
         <div className="w-1.5 h-6 bg-[#6B4EEF] rounded-full mr-2"></div>
         <h3 className="text-xl font-semibold text-gray-800">Categories</h3>
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 max-h-64 overflow-y-auto">
         {categories.map((category, index) => (
-          <div key={index} className="flex items-center justify-between cursor-pointer">
+          <div
+            key={index}
+            className="flex items-center justify-between cursor-pointer"
+          >
             <p className="text-lg text-gray-700 hover:text-[#6B4EEF]">
               {category}
             </p>

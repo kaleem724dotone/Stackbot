@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import PrivacyPolicy from '../components/PrivacyPolicy';
-import { BlogShowcase } from '../components/Blog/GBlog';
+import ContactForm from '../components/ContactUs/ContactForm'
+
 
 
  const ContactUs = () => {
@@ -9,10 +9,8 @@ import { BlogShowcase } from '../components/Blog/GBlog';
   }, []);
   return (
     <div>
-        {/* <ContactForm/> */}
-        <BlogShowcase title="Latest Blog Posts" filterType='popular' show='yes'/>
-        <BlogShowcase title="Featured Blog Posts" filterType='featured' show='no'/>
-        <PrivacyPolicy/>
+        <ContactForm/>
+
     </div>
   )
 }

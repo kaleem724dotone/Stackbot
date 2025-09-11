@@ -1,15 +1,15 @@
 import React from "react";
-import { products as defaultProducts } from "../data/productsData";
+import { products as defaultProducts } from "../../data/productsData";
 const CategoryGrid = () => {
   // Create a unique list of categories by filtering products
   const categories = Array.from(new Set(defaultProducts.map((product) => product.category)));
 
   return (
     <section className="my-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+      <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-center">
         View Our Range Of Categories
       </h2>
-      <p className="text-xl text-gray-500 mb-8">
+      <p className="text-xl font-Exo text-[#656A6F] mb-8 text-center max-w-2xl mx-auto">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy
         nibh euismod tincidunt ut laoreet dolore magna aliquam.
       </p>

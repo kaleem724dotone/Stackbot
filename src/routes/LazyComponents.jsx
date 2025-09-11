@@ -2,12 +2,13 @@ import React, { Suspense, lazy } from 'react';
 
 const ComponentMap = {
   '/': lazy(() => import('../pages/Home')),
-  '/affiliates': lazy(() => import('../pages/Affiliates')),
   '/contact': lazy(() => import('../pages/ContactUs')),
-  '/candy-shake': lazy(() => import('../pages/CandyShake')),
   '/order-page/:id': lazy(() => import('../pages/OrderPage')),
   '/card': lazy(() => import('../pages/Card')),
   '/checkout': lazy(() => import('../pages/CheckOut')),
+  '/category': lazy(() => import('../pages/Categories')),
+  '/blog': lazy(() => import('../pages/Blog')),
+  '/about-us': lazy(() => import('../pages/AboutUs')),
 };
 
 const NotFound = lazy(() => import('../pages/NotFound'));

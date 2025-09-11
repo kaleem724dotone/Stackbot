@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Rate } from "antd";
+// import { products as defaultProducts } from "../data/productsData";
 import { products as defaultProducts } from "../data/productsData";
-
 const currencyFmt = (n, currency = "USD") =>
   new Intl.NumberFormat(undefined, { style: "currency", currency }).format(n);
 

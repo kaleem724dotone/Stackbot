@@ -1,102 +1,68 @@
 import React from "react";
 import { blogPosts } from "../../data/blogPost";
+import { Card, Row, Col, Avatar, Typography } from "antd";
+
+const { Title, Paragraph, Text } = Typography;
 
 const FeaturedPostCard = ({ post }) => (
-  <div className="flex bg-white rounded-xl max-w-full max-h-48 mx-auto my-16">
-    <div className="w-1/2">
-      <img
-        src={post.image}
-        alt={post.title}
-        className="w-full h-full object-cover rounded-l-xl"
-      />
-    </div>
-    <div className="w-1/2 p-8 flex flex-col justify-center">
-      <h2 className="text-xl font-bold mb-4">{post.title}</h2>
-      <p className="text-gray-700 mb-6 leading-relaxed">{post.description}</p>
-      <div className="flex items-center gap-2 text-gray-500 text-sm">
+  <Card
+    hoverable
+    className="mb-8"
+    bodyStyle={{ padding: 24 }}
+    style={{ borderRadius: 16 }}
+  >
+    <Row gutter={[24, 24]} align="middle">
+      <Col xs={24} md={12}>
         <img
-          src={post.userAvatar}
-          alt={post.userName}
-          className="w-8 h-8 rounded-full"
+          src={post.image}
+          alt={post.title}
+          className="w-full  md:h-80 object-cover rounded-md"
         />
-        <span>{post.userName}</span>
-        <span>• {post.date}</span>
-      </div>
-    </div>
-  </div>
+      </Col>
+      <Col xs={24} md={12}>
+        <Title level={3}>{post.title}</Title>
+        <Paragraph ellipsis={{ rows: 3 }}>{post.description}</Paragraph>
+        <div className="flex items-center gap-4">
+          <Avatar src={post.userAvatar} />
+          <Text>{post.userName}</Text>
+          <Text type="secondary">• {post.date}</Text>
+        </div>
+      </Col>
+    </Row>
+  </Card>
 );
 
 const BlogPostCard = ({ post }) => (
-  <div className="border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-    <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
-    <div className="p-4">
-      <h4 className="text-lg font-semibold mb-2 line-clamp-2">{post.title}</h4>
-      <div className="flex items-center gap-2 text-gray-500 text-sm">
-        <img src={post.userAvatar} alt={post.userName} className="w-6 h-6 rounded-full" />
-        <span>{post.userName}</span>
-        <span>• {post.date}</span>
-        <span>• {post.time}</span>
-      </div>
+  <Card
+    hoverable
+    cover={<img alt={post.title} src={post.image} className="h-48 object-cover" />}
+    style={{ borderRadius: 16 }}
+  >
+    <Title level={5} ellipsis={{ rows: 2 }}>
+      {post.title}
+    </Title>
+    <div className="flex items-center gap-2 text-gray-500 text-sm">
+      <Avatar size={24} src={post.userAvatar} />
+      <Text>{post.userName}</Text>
+      <Text type="secondary">• {post.date}</Text>
+      <Text type="secondary">• {post.time}</Text>
     </div>
-  </div>
+  </Card>
 );
 
-// export const BlogShowcase = ({
-//   title,
-//   posts = blogPosts,
-//   filterType = "featured",
-//   show = "yes" // default to "yes"
-// }) => {
-//   // If show is "no", render nothing
-//   if (show === "no") return null;
-
-//   const filteredPosts = posts.filter((p) => p.type === filterType);
-
-//   if (filteredPosts.length === 0) {
-//     return (
-//       <section className="my-12">
-//         <h2 className="text-4xl font-bold text-gray-900">{title}</h2>
-//         <p className="mt-4 text-gray-600">No posts to display in this section.</p>
-//       </section>
-//     );
-//   }
-
-//   const mainPost = filteredPosts[0];
-//   const otherPosts = filteredPosts.slice(1);
-
-//   return (
-//     <section className="my-12">
-//       <header className="mb-8 md:mb-12">
-//         <h2 className="text-4xl md:text-5xl font-bold text-gray-900">{title}</h2>
-//       </header>
-
-//       <main>
-//         <FeaturedPostCard post={mainPost} />
-
-//         {otherPosts.length > 0 && (
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-//             {otherPosts.map((post) => (
-//               <BlogPostCard key={post.id} post={post} />
-//             ))}
-//           </div>
-//         )}
-//       </main>
-//     </section>
-//   );
-// };
 export const BlogShowcase = ({
   title,
   posts = blogPosts,
   filterType = "featured",
-  show = "yes" // controls FeaturedPostCard only
+  show = "yes", // controls FeaturedPostCard only
 }) => {
   const filteredPosts = posts.filter((p) => p.type === filterType);
 
   if (filteredPosts.length === 0) {
     return (
-      <section className="my-12">
-        <h2 className="text-4xl font-bold text-gray-900">{title}</h2>
-        <p className="mt-4 text-gray-600">No posts to display in this section.</p>
+      <section className="mx-12">
+        <Title level={2}>{title}</Title>
+        <Paragraph>No posts to display in this section.</Paragraph>
       </section>
     );
   }
@@ -105,21 +71,24 @@ export const BlogShowcase = ({
   const otherPosts = filteredPosts.slice(1);
 
   return (
-    <section className="my-12">
-      <header className="mb-8 md:mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">{title}</h2>
+    <section className="mx-12 my-16">
+      <header className="mb-8">
+        <Title level={2}>{title}</Title>
       </header>
 
       <main>
-        {/* Render FeaturedPostCard only if show === "yes" */}
+        {/* Featured post */}
         {show === "yes" && <FeaturedPostCard post={mainPost} />}
 
+        {/* Other posts grid */}
         {otherPosts.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <Row gutter={[24, 24]}>
             {otherPosts.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
+              <Col xs={24} sm={12} lg={8} key={post.id}>
+                <BlogPostCard post={post} />
+              </Col>
             ))}
-          </div>
+          </Row>
         )}
       </main>
     </section>

@@ -1,12 +1,16 @@
 import { SearchOutlined, DownOutlined, MenuOutlined } from "@ant-design/icons";
-import logo from "../../assets/logo.png";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+// In a real application, you would import these from a local assets folder
+// For this example, we'll use a placeholder for the logo
+const logo = "https://placehold.co/100x40/5046c7/white?text=STOCKBACK";
+
 const menuItems = [
   { id: "home", label: "Home", path: "/" },
-  { id: "candy-shake", label: "Candy Shack", path: "/candy-shake" },
-  { id: "affiliates", label: "Affiliates", path: "/affiliates" },
+  { id: "about-us", label: "About Us", path: "/about-us" },
+  { id: "category", label: "Categories", path: "/category" },
+  { id: "blog", label: "Blog", path: "/blog" },
   { id: "contact", label: "Contact Us", path: "/contact" },
 ];
 
@@ -15,41 +19,36 @@ const Header = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    setMenuOpen(false);
+  };
+
   return (
-    <header
-      className="w-full 2xl-Mob:border-2 2xl-Mob:border-red-500 flex items-center justify-between bg-white px-4 md:px-8 py-3 md:py-4 font-primary sticky top-0 z-50"
-      style={{ boxShadow: "0px 1px 1px 0px #00000040" }}
-    >
-      {/* Logo */}
-      <div className="flex items-center">
+    <header className="w-full flex items-center justify-between bg-white px-4 md:px-8 py-3 md:py-4 font-primary sticky top-0 z-50">
+      {/* Logo and Text */}
+      <div className="flex items-center gap-2">
         <img
           src={logo}
           alt="Stockback Logo"
           className="h-8 md:h-10 w-auto cursor-pointer"
-          onClick={() => navigate("/")}
+          onClick={() => handleNavigation("/")}
         />
-      </div>
-
-      {/* Desktop Search */}
-      <div className="hidden md:flex items-center bg-white border border-[#E3E3E3] rounded-full px-3 py-1 w-[220px] lg:w-[340px] mx-6">
-        <input
-          className="flex-1 bg-transparent outline-none text-gray-500 placeholder:text-gray-400 text-sm lg:text-base px-2"
-          placeholder="Search here.."
-        />
-        <button className="bg-[#5046C7] text-white rounded-full px-4 lg:px-5 py-1 text-xs lg:text-sm font-semibold flex items-center justify-center">
-          <SearchOutlined /> Search
-        </button>
+        {/* <span className="text-white text-xl md:text-2xl font-bold font-sans tracking-wide">
+          STOCKBACK
+        </span> */}
       </div>
 
       {/* Desktop Nav */}
-      <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
+      <nav className="hidden lg:flex items-center gap-8 flex-1 justify-center">
         {menuItems.map((item) => (
           <div
             key={item.id}
-            onClick={() => navigate(item.path)}
-            className={`cursor-pointer text-[15px] lg:text-[17px] font-semibold transition ${location.pathname === item.path
-              ? "text-[#5046C7] font-bold"
-              : "text-[#656A6F] hover:text-[#5046C7]"
+            onClick={() => handleNavigation(item.path)}
+            className={`cursor-pointer text-[15px] lg:text-[17px] font-semibold transition whitespace-nowrap
+              ${location.pathname === item.path
+                ? "text-[#5046C7] font-bold"
+                : "text-[#5046C7] hover:text-[#6B46C1]"
               }`}
           >
             {item.label}
@@ -58,25 +57,25 @@ const Header = () => {
       </nav>
 
       {/* Right Section */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         {/* Language Selector */}
-        <button className="hidden md:flex items-center border border-[#5046C7] rounded-full px-4 lg:px-6 py-1 lg:py-2 text-[#5046C7] font-semibold text-sm lg:text-base whitespace-nowrap">
+        <button className="hidden md:flex items-center border border-[#6B46C1] rounded-full px-4 lg:px-6 py-2 text-[#5046C7] font-semibold text-sm lg:text-base whitespace-nowrap">
           ENG <DownOutlined className="ml-2 text-xs" />
         </button>
 
         {/* Auth Buttons */}
         <div className="hidden md:flex items-center gap-2">
-          <button className="border border-[#5046C7] rounded-full px-4 lg:px-6 py-1 lg:py-2 text-[#5046C7] font-semibold text-sm lg:text-base bg-white whitespace-nowrap">
+          <button className="border border-[#6B46C1] rounded-full px-4 lg:px-6 py-2 text-[#5046C7] font-semibold text-sm lg:text-base bg-transparent whitespace-nowrap">
             Sign In
           </button>
-          <button className="bg-[#5046C7] border border-[#5046C7] rounded-full px-4 lg:px-6 py-1 lg:py-2 text-white font-semibold text-sm lg:text-base whitespace-nowrap">
+          <button className="bg-[#6B46C1] border border-[#6B46C1] rounded-full px-4 lg:px-6 py-2 text-white font-semibold text-sm lg:text-base whitespace-nowrap">
             Sign Up
           </button>
         </div>
 
         {/* Mobile Hamburger */}
         <button
-          className="flex lg:hidden items-center text-[#5046C7] ml-2"
+          className="flex lg:hidden items-center text-[#6B46C1] ml-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <MenuOutlined className="text-2xl" />
@@ -85,32 +84,17 @@ const Header = () => {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="absolute top-[70px] left-0 w-full bg-white shadow-md flex flex-col items-start px-6 py-4 gap-4 lg:hidden">
-          {/* Search (mobile only) */}
-          <div className="flex w-full items-center bg-white border border-[#E3E3E3] rounded-full px-3 py-1">
-            <input
-              className="flex-1 bg-transparent outline-none text-gray-500 placeholder:text-gray-400 text-sm px-2"
-              placeholder="Search here.."
-            />
-            {/* Search Button */}
-            <button className="hidden md:flex items-center bg-[#5046C7] text-white rounded-full py-1 text-xs font-semibold">
-              <SearchOutlined className="mr-1" /> Search
-            </button>
-          </div>
-
-
+        <div className="absolute top-[70px] left-0 w-full bg-black shadow-md flex flex-col items-start px-6 py-4 gap-4 lg:hidden">
           {/* Nav Links */}
           <nav className="flex flex-col gap-3 w-full">
             {menuItems.map((item) => (
               <div
                 key={item.id}
-                onClick={() => {
-                  navigate(item.path);
-                  setMenuOpen(false);
-                }}
-                className={`cursor-pointer text-[15px] font-semibold ${location.pathname === item.path
-                  ? "text-[#5046C7] font-bold"
-                  : "text-[#656A6F] hover:text-[#5046C7]"
+                onClick={() => handleNavigation(item.path)}
+                className={`cursor-pointer text-[15px] font-semibold transition
+                  ${location.pathname === item.path
+                    ? "text-[#6B46C1] font-bold"
+                    : "text-white hover:text-[#6B46C1]"
                   }`}
               >
                 {item.label}
@@ -119,16 +103,16 @@ const Header = () => {
           </nav>
 
           {/* Language Selector */}
-          <button className="flex items-center border border-[#5046C7] rounded-full px-4 py-1 text-[#5046C7] font-semibold text-sm">
+          <button className="flex items-center bg-[#1E1E1E] border border-[#6B46C1] rounded-full px-4 py-2 text-white font-semibold text-sm w-full justify-center">
             ENG <DownOutlined className="ml-2 text-xs" />
           </button>
 
           {/* Auth Buttons */}
           <div className="flex flex-col gap-2 w-full">
-            <button className="border border-[#5046C7] rounded-full px-4 py-2 text-[#5046C7] font-semibold text-sm bg-white w-full">
+            <button className="border border-[#6B46C1] rounded-full px-4 py-2 text-white font-semibold text-sm bg-transparent w-full">
               Sign In
             </button>
-            <button className="bg-[#5046C7] border border-[#5046C7] rounded-full px-4 py-2 text-white font-semibold text-sm w-full">
+            <button className="bg-[#6B46C1] border border-[#6B46C1] rounded-full px-4 py-2 text-white font-semibold text-sm w-full">
               Sign Up
             </button>
           </div>

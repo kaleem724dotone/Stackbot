@@ -13,14 +13,6 @@ const router = createBrowserRouter([
         element: <LazyComponents path="/" />,
       },
       {
-        path: "candy-shake",
-        element: <LazyComponents path="/candy-shake" />,
-      },
-      {
-        path: "affiliates",
-        element: <LazyComponents path="/affiliates" />,
-      },
-      {
         path: "contact",
         element: <LazyComponents path="/contact" />,
       },
@@ -37,9 +29,18 @@ const router = createBrowserRouter([
         element: <LazyComponents path="/checkout" />,
       },
       {
-        path: "/category",
-        element: <LazyComponents path="/category" />,
+        path:"category",
+        element:<LazyComponents path="/category" />
       },
+      {
+        path:"blog",
+        element:<LazyComponents path="/blog" />
+      },
+      {
+        path:"about-us",
+        element:<LazyComponents path="/about-us" />
+      },
+ 
       // Optional: catch-all for NotFound
       {
         path: "*",

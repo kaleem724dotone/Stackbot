@@ -1,10 +1,11 @@
 
 import React, { useEffect } from 'react'
-import HeroSection from '../components/HeroSection'
-import CategoryGrid from '../components/CategoryGrid'
-import Products from '../components/Products'
-import UniqueSellingProportions from '../components/UniqueSellingProportions'
-import FAQSection from '../components/FAQSection'
+import HeroSection from '../components/Home/HeroSection';
+import Products from '../components/Products';
+import CategoryGrid from '../components/Home/CategoryGrid';
+import UniqueSellingProportions from '../components/UniqueSellingProportions';
+import FAQSection from '../components/FAQSection';
+
 
 // import Almira from "../assets/almira.png"
 
@@ -18,9 +19,9 @@ const Home = () => {
   return (
     <div className='w-[100%]' >
       <HeroSection />
-      <Products heading="Featured Products" description="Check out our featured products below." />
+      <Products heading="Featured Products"  />
       <CategoryGrid />
-      <Products heading="Most Popular Items" description="Check out our most popular items below." filterBy={['popular']} columns={4}/>
+      <Products heading="Most Popular Products" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc in molestie feugiat. Nunc auctor consectetur elit, quis pulvina." filterBy={['popular']} columns={4}/>
       <UniqueSellingProportions />
       <FAQSection />
 

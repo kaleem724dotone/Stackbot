@@ -1,6 +1,7 @@
 import React from 'react'
-import ViewCard from '../components/ViewCard'
+import ViewCard from '../components/ViewCard/ViewCard'
 import Products from '../components/Products'
+
 
 const Card = () => {
   return (
