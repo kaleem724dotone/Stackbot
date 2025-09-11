@@ -150,4 +150,18 @@ export const products = [
     featured: true,  // Marked as featured
     popular: true,
   },
+  {
+    id: "prod-11",
+    title: "Trending Down Item",
+    price: "$20.00",
+    rating: 2,
+    image: towel,
+    gallery: [towel],
+    description: "An item that was once popular but is now declining in sales.",
+    category: "Trending Products",
+    stock: 50,
+    brand: "TrendSetter",
+    featured: false,
+    popular: false,
+  }
 ];
