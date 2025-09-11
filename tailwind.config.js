@@ -1,0 +1,47 @@
+// /** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  important: true,
+  theme: {
+    extend: {
+      // colors
+      colors: {
+        primary: "#5046C7",
+        secondary: "#212121",
+      },
+      screens: {
+        "sm-Mob": "390px",
+        "md-Mob": "768px",
+        "lg-Mob": "1024px",
+        "xl-Mob": "1280px",
+        "2xl-Mob": "1536px",
+      },
+
+      //font family
+      fontFamily: {
+        primary:["Poppins", "sans-serif"],
+        openSans: ["Open Sans", "sans-serif"],
+        secondary: ['"Inter",sans-serif'],
+
+      },
+
+      // font sizes
+      fontSize: {
+        h1: "40px",
+        h2: "35px",
+        h3: "28px",
+        h4: "14px",
+        text1: "12px",
+        text2: "10px",
+      },
+
+      // font weight
+      fontWeight: {
+        b5: "500",
+        b6: "600",
+        b7: "700",
+      },
+    },
+    plugins: [],
+  },
+};
